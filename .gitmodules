@@ -1,0 +1,3 @@
+[submodule "DataChallenge"]
+	path = DataChallenge
+	url = git@github.com:UTK-COSC377-2018/DataChallenge.git
