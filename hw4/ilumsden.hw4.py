@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+Homework 4:
+Name: Ian Lumsden
+NetID: ilumsden
+"""
 # prob2-3-19 (hwk #4)
 #
 #  Problem 2.3.19 (pg. 101)
@@ -16,13 +21,17 @@
 #   90.17857143 92.85714286 124.10714286 128.57142857]
 #
 ######################################################################
+# This import is included to help the code more easily run on Hyrda/Tesla.
+# It allows the code to run correctly using Python 2.7
 from __future__ import print_function
 
+# Most of these imports were provided.
+# dot was added for the Ax matrix-vector multiplication function.
 from numpy import zeros, array, linalg, dot
 from conjGrad import *
 
-# Refer to pg. 101 for what the matrix Ax should be
-
+# This function calculates the product of matrix A from problem 19
+# and vector v.
 def Ax(v):
     #Ax = zeros((9))*1.0
     # fill in the 9 rows of Ax
@@ -39,9 +48,11 @@ def Ax(v):
     Ax = dot(Ax, v)
     return Ax
 
+# b and x are the right-hand side and solution vectors from problem 19
 b = array([0,0,100,0,0,100,200,200,300])*(-1.0)
 x = zeros((9))*1.0
 tol = 1e-06
+# Solves the equation using a tolerance of 1e-6
 s1, numIter = conjGrad(Ax, x, b, tol=tol)
 print("\nThe solution is:\n",s1)
 print("\nNumber of iterations =",numIter, "using Tol: ", 1e-06)
@@ -57,4 +68,6 @@ for tol in [1e-02, 1e-04, 1e-06, 1e-08, 1e-10, 1e-12, 1e-14, 1e-16]:
     s2, numIter = conjGrad(Ax, x, b, tol=tol)
     print('%6d      %8.1e'%(numIter,tol))
 
+# Prints the error measure between the solutions with tolerances of
+# 1e-6 and 1e-16
 print("\nError between vectors obtained with tol=1e-06 and tol=1e-16: ", linalg.norm(s1-s2), "\n")
